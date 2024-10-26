@@ -1,0 +1,54 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+            - имя: Загрузить артефакт сборки
+  использует: actions/download-artifact@v4.1.8
+  с:
+    # Имя артефакта для загрузки. Если не указано, загружаются все артефакты для запуска.
+    имя: # необязательно
+    # Путь назначения. Поддерживает базовое расширение тильды. По умолчанию $GITHUB_WORKSPACE
+    путь: # необязательно
+    # Шаблон glob, соответствующий артефактам, которые должны быть загружены. Игнорируется, если указано имя.
+    шаблон: # необязательно
+    # Когда сопоставляются несколько артефактов, это изменяет поведение целевых каталогов. Если true, загруженные артефакты будут находиться в том же каталоге, указанном путем. Если false, загруженные артефакты будут извлечены в отдельные именованные каталоги в пределах указанного пути.
+    merge-multiple: # необязательно, по умолчанию false
+    # Токен GitHub, используемый для аутентификации с API GitHub. Это необходимо при загрузке артефактов из другого репозитория или из другого запуска рабочего процесса. Если это не указано, действие попытается загрузить артефакты из текущего репозитория и текущего запуска рабочего процесса.
+    github-токен: # необязательно
+    # Владелец репозитория и имя репозитория, соединенные символом "/". Если указан github-token, то это репозиторий, из которого будут загружаться артефакты.
+    репозиторий: # необязательно, по умолчанию ${{ github.repository }}
+    # Идентификатор запуска рабочего процесса, из которого был загружен нужный артефакт загрузки. Если указан github-token, это запуск, из которого будут загружены артефакты.
+    run-id: # необязательно, по умолчанию ${{ github.run_id }}
+          
